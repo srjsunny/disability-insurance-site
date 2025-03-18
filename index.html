@@ -1,46 +1,956 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disability Insurance for Doctors</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedGuard - Disability Insurance for Physicians</title>
+    <meta name="description" content="Specialized disability insurance solutions for physicians and medical professionals." />
+    <meta name="author" content="MedGuard" />
+    <meta property="og:image" content="/og-image.png" />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #f8fafc;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --white: #ffffff;
+        --border: #e2e8f0;
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        color: var(--text);
+        line-height: 1.6;
+      }
+      
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      /* Header */
+      header {
+        background-color: var(--white);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--text);
+      }
+      
+      .logo-icon {
+        color: var(--primary);
+        margin-right: 10px;
+        font-size: 1.8rem;
+      }
+      
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+      
+      nav li a {
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      
+      nav li a:hover {
+        color: var(--primary);
+      }
+      
+      .btn {
+        display: inline-block;
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 10px 24px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      }
+      
+      .btn:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+      }
+      
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(37, 99, 235, 0.1);
+        z-index: 0;
+      }
+      
+      .hero::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(37, 99, 235, 0.1);
+        z-index: 0;
+      }
+      
+      .hero-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .hero-content {
+        flex: 1;
+      }
+      
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--text);
+        background: linear-gradient(to right, #1e293b, #2563eb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .hero h1 span {
+        color: var(--primary);
+        -webkit-text-fill-color: var(--primary);
+      }
+      
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--text-light);
+        margin-bottom: 35px;
+        max-width: 600px;
+      }
+      
+      .hero-image {
+        flex: 1;
+        text-align: center;
+      }
+      
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        transition: transform 0.5s ease;
+      }
+      
+      .hero-image img:hover {
+        transform: perspective(500px) rotateY(5deg);
+      }
+      
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+      
+      .section-title {
+        text-align: center;
+        margin-bottom: 70px;
+      }
+      
+      .section-title h2 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 15px;
+      }
+      
+      .section-title h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+      
+      .section-title p {
+        color: var(--text-light);
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+      }
+      
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 35px;
+      }
+      
+      .feature-card {
+        background-color: var(--secondary);
+        border-radius: 16px;
+        padding: 35px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+      }
+      
+      .feature-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .feature-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        background-color: var(--white);
+        color: var(--primary);
+        border-radius: 50%;
+        margin-bottom: 25px;
+        font-size: 1.75rem;
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.15);
+      }
+      
+      .feature-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+      
+      /* Benefits Section */
+      .benefits {
+        padding: 100px 0;
+        background-color: var(--secondary);
+      }
+      
+      .benefits-container {
+        display: flex;
+        gap: 60px;
+        align-items: center;
+      }
+      
+      .benefits-content {
+        flex: 1;
+      }
+      
+      .benefits-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      
+      .benefits-content h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+      
+      .benefits-list {
+        margin-top: 35px;
+      }
+      
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        padding: 20px;
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+      
+      .benefit-item:hover {
+        transform: translateX(10px);
+      }
+      
+      .benefit-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+        height: 36px;
+        color: var(--white);
+        background: var(--primary);
+        border-radius: 50%;
+        margin-right: 20px;
+        font-size: 1rem;
+      }
+      
+      .benefit-item h3 {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      
+      .benefits-image {
+        flex: 1;
+      }
+      
+      .benefits-image img {
+        max-width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        transition: all 0.5s ease;
+      }
+      
+      .benefits-image img:hover {
+        transform: scale(1.05);
+      }
+      
+      /* FAQ Section */
+      .faq {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+      
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .accordion {
+        margin-top: 50px;
+      }
+      
+      .accordion-item {
+        border: 1px solid var(--border);
+        margin-bottom: 15px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        transition: all 0.3s ease;
+      }
+      
+      .accordion-item:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      }
+      
+      .accordion-header {
+        padding: 20px 25px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        background-color: var(--secondary);
+        transition: background-color 0.3s ease;
+      }
+      
+      .accordion-header:hover {
+        background-color: #eff6ff;
+      }
+      
+      .accordion-content {
+        padding: 0 25px 20px;
+        color: var(--text-light);
+        line-height: 1.7;
+        background-color: var(--white);
+      }
+      
+      /* Contact Section */
+      .contact {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .contact::before {
+        content: '';
+        position: absolute;
+        bottom: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: rgba(37, 99, 235, 0.1);
+        z-index: 0;
+      }
+      
+      .contact-container {
+        display: flex;
+        gap: 60px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .contact-content {
+        flex: 1;
+      }
+      
+      .contact-content h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      
+      .contact-content h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+      
+      .contact-info {
+        margin-top: 40px;
+      }
+      
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        background: var(--white);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+      
+      .contact-item:hover {
+        transform: translateX(10px);
+      }
+      
+      .contact-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        height: 50px;
+        color: var(--primary);
+        background: rgba(37, 99, 235, 0.1);
+        border-radius: 50%;
+        margin-right: 20px;
+        font-size: 1.3rem;
+      }
+      
+      .contact-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      
+      .contact-form {
+        flex: 1;
+      }
+      
+      .google-form {
+        width: 100%;
+        height: 650px;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* About Section */
+      .about {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+      
+      .section-padding {
+        padding: 0 20px;
+      }
+      
+      .about-content {
+        max-width: 800px;
+        margin: 50px auto 0;
+        text-align: center;
+        line-height: 1.8;
+      }
+      
+      .about-content p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+      }
+      
+      /* Footer */
+      footer {
+        background-color: #1e293b;
+        color: var(--white);
+        padding: 80px 0 30px;
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+      }
+      
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+      }
+      
+      .footer-column h3 {
+        font-size: 1.2rem;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+      
+      .footer-column h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+      
+      .footer-links {
+        list-style: none;
+      }
+      
+      .footer-links li {
+        margin-bottom: 15px;
+      }
+      
+      .footer-links a {
+        color: #94a3b8;
+        transition: color 0.3s, transform 0.3s;
+        display: inline-block;
+      }
+      
+      .footer-links a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+      }
+      
+      .footer-bottom {
+        border-top: 1px solid #334155;
+        padding-top: 30px;
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+      
+      /* Mobile Styles */
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+        }
+        
+        .hero-container, .benefits-container, .contact-container {
+          flex-direction: column;
+        }
+        
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+        
+        .section-title h2 {
+          font-size: 2rem;
+        }
+        
+        .benefits-image, .hero-image {
+          margin-top: 40px;
+        }
+        
+        .feature-card, .benefit-item, .contact-item {
+          padding: 20px;
+        }
+        
+        .features {
+          padding: 60px 0;
+        }
+        
+        .benefits, .contact, .faq, .about {
+          padding: 60px 0;
+        }
+      }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
 
+  <body>
     <header>
-        <div class="container">
-            <h1>Protect Your Future with Disability Insurance</h1>
-            <p>Specialized coverage for medical professionals.</p>
-            <a href="https://forms.gle/HUKzAHCyLEvfERxo8" class="button">Get a Free Quote</a>
-        </div>
+      <div class="container header-container">
+        <a href="#" class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          MedGuard
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#features">Coverage</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#about">About Us</a></li>
+          </ul>
+        </nav>
+        <a href="#contact" class="btn">Get a Quote</a>
+      </div>
     </header>
 
-    <section class="info">
-        <div class="container">
-            <h2>Why Choose Us?</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>✔ Tailored for Doctors</h3>
-                    <p>Our insurance plans are designed specifically for medical professionals.</p>
-                </div>
-                <div class="feature">
-                    <h3>✔ Affordable Rates</h3>
-                    <p>We provide competitive pricing and flexible payment plans.</p>
-                </div>
-                <div class="feature">
-                    <h3>✔ Trusted Experts</h3>
-                    <p>Backed by years of experience in disability insurance.</p>
-                </div>
-            </div>
+    <section class="hero" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1>Specialized <span>Disability Insurance</span> for Physicians</h1>
+          <p>Protect your income and future with disability insurance designed specifically for medical professionals. Our tailored coverage ensures financial security if you're unable to practice medicine.</p>
+          <a href="#contact" class="btn">Request a Quote</a>
         </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Doctor with stethoscope">
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Comprehensive Coverage Options</h2>
+          <p>Our disability insurance policies are specifically designed to address the unique needs of physicians and medical professionals.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+            <h3 class="feature-title">Own-Occupation Coverage</h3>
+            <p>Receive benefits if you can't perform your medical specialty, even if you can work in another medical field or profession.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3 class="feature-title">Residual Disability Benefits</h3>
+            <p>Partial benefits if you can work but experience income loss due to reduced hours or responsibilities.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-shield-virus"></i></div>
+            <h3 class="feature-title">Student Loan Protection</h3>
+            <p>Additional coverage to help meet student loan obligations during a disability period.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-stethoscope"></i></div>
+            <h3 class="feature-title">Specialty-Specific</h3>
+            <p>Tailored coverage based on your medical specialty and its unique income protection needs.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
+            <h3 class="feature-title">Guaranteed Insurability</h3>
+            <p>Option to increase coverage as your income grows without additional medical underwriting.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-user-shield"></i></div>
+            <h3 class="feature-title">Non-Cancelable Policies</h3>
+            <p>Premiums cannot be increased and policy cannot be canceled as long as premiums are paid.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits" id="benefits">
+      <div class="container benefits-container">
+        <div class="benefits-content">
+          <h2>Why Physicians Need Specialized Disability Coverage</h2>
+          <p>Standard disability insurance often falls short for medical professionals. Our specialized coverage addresses the unique needs of physicians.</p>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <span class="benefit-icon"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <h3>Higher Income Protection</h3>
+                <p>Coverage designed for high-earning physicians with appropriate benefit limits.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <h3>Specialty-Specific Definition of Disability</h3>
+                <p>Protection that recognizes the specialized nature of your medical practice.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <h3>Protection During Residency & Beyond</h3>
+                <p>Coverage options that grow with your career from training to practice.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <span class="benefit-icon"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <h3>Portable Coverage</h3>
+                <p>Your policy stays with you regardless of where you practice or if you change employers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="benefits-image">
+          <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Doctor examining medical charts">
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container faq-container">
+        <div class="section-title">
+          <h2>Frequently Asked Questions</h2>
+          <p>Find answers to common questions about physician disability insurance.</p>
+        </div>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>What makes physician disability insurance different?</span>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="accordion-content">
+              <p>Physician disability insurance offers specialized "own-occupation" coverage, meaning you receive benefits if you can't perform your specific medical specialty even if you can work in another capacity. It also typically offers higher benefit amounts to protect physicians' higher incomes.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>When should I purchase disability insurance?</span>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="accordion-content">
+              <p>The best time to purchase is early in your career, ideally during residency or fellowship. Premiums are lower when you're younger and healthier, and you'll secure coverage before developing any medical conditions that might affect insurability.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>How much coverage do I need?</span>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="accordion-content">
+              <p>Most financial advisors recommend coverage for 60-70% of your gross income. However, the appropriate amount depends on your specific financial situation, including expenses, debt, savings, and other income sources.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Is employer-provided disability coverage sufficient?</span>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="accordion-content">
+              <p>Employer-provided coverage is rarely sufficient for physicians. These policies often have limited definitions of disability, cap benefits well below a physician's income, and benefits are typically taxable. Additionally, coverage ends if you leave your employer.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>What is the elimination period?</span>
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="accordion-content">
+              <p>The elimination period (or waiting period) is the time between the onset of disability and when you begin receiving benefits. Common periods are 90 or 180 days. Longer elimination periods typically result in lower premiums.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-container">
+        <div class="contact-content">
+          <h2>Get a Personalized Quote</h2>
+          <p>Complete our form to receive a customized disability insurance quote tailored to your medical specialty and career stage.</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+              <div>
+                <h3>Email Us</h3>
+                <p>info@medguardinsurance.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+              <div>
+                <h3>Call Us</h3>
+                <p>(800) 555-0123</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon"><i class="fa-solid fa-clock"></i></span>
+              <div>
+                <h3>Business Hours</h3>
+                <p>Monday-Friday: 9AM-5PM EST</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdUG4HC8Te9tzoX6lY7zx4AMgPKiHasfU_NUsrU9OYpvhkgFw/viewform?embedded=true" class="google-form">Loading...</iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container section-padding">
+        <div class="section-title">
+          <h2>About MedGuard</h2>
+          <p>We specialize in providing tailored disability insurance solutions for physicians and medical professionals.</p>
+        </div>
+        <div class="about-content">
+          <p>At MedGuard, we understand the unique challenges and risks faced by those in the medical profession. For over 15 years, we have dedicated ourselves to protecting the financial future of physicians across all specialties.</p>
+          <p>Our team of insurance specialists has deep expertise in the medical field and works closely with leading insurance carriers to offer comprehensive coverage options designed specifically for healthcare professionals.</p>
+          <p>We believe in building long-term relationships with our clients, providing ongoing support as your career evolves from training to practice and through retirement planning.</p>
+        </div>
+      </div>
     </section>
 
     <footer>
-        <p>© 2025 Disability Insurance for Doctors | All Rights Reserved</p>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-column">
+            <div class="footer-logo">
+              <span class="logo-icon"><i class="fa-solid fa-shield-halved"></i></span>
+              MedGuard
+            </div>
+            <p>Specialized disability insurance for physicians and medical professionals.</p>
+          </div>
+          <div class="footer-column">
+            <h3>Coverage</h3>
+            <ul class="footer-links">
+              <li><a href="#features">Specialty Coverage</a></li>
+              <li><a href="#features">Residual Benefits</a></li>
+              <li><a href="#features">Student Loan Protection</a></li>
+              <li><a href="#features">Future Insurability</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Company</h3>
+            <ul class="footer-links">
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contact</h3>
+            <ul class="footer-links">
+              <li><a href="#contact">Get a Quote</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Resources</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 MedGuard Insurance. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
-</body>
+    <script>
+      // Simple accordion functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.accordion-header').forEach(button => {
+          button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            
+            // Toggle display
+            if (content.style.display === 'block') {
+              content.style.display = 'none';
+              button.querySelector('i').classList.remove('fa-minus');
+              button.querySelector('i').classList.add('fa-plus');
+            } else {
+              content.style.display = 'block';
+              button.querySelector('i').classList.remove('fa-plus');
+              button.querySelector('i').classList.add('fa-minus');
+            }
+          });
+        });
+
+        // Hide all accordion content initially
+        document.querySelectorAll('.accordion-content').forEach(content => {
+          content.style.display = 'none';
+        });
+      });
+    </script>
+    
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </body>
 </html>
